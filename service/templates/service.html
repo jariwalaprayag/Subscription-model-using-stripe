@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Service</title>
+	<style type="text/css">
+	 .topcorner{
+	   position:absolute;
+	   top:10px;
+	   right:10px;
+	  }
+	</style>
+	<script>
+		function myFunction() {
+		  var x = confirm("Are you really sure you want to cancel subscription!");
+		  if(x==true)
+		  {
+		  	window.location.replace("cancel/");
+		  }
+
+		}
+		function myFunction1() {
+		  var x = confirm("Are you really sure you want to restart subscription!");
+		  if(x==true)
+		  {
+		  	window.location.replace("restart/");
+		  }
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<a href="{% url 'logout' %}" class="topcorner" role="button" aria-pressed="true">logout</a>
+	</div>
+	<center>
+		<h1>WhatsBusy</h1>
+		<br>
+		<h2>Hello, {{request.user}} !!</h2>
+		<h3>Congratulations,</h3>
+		<h3>You have now become a Premium user of Whatsbusy Services.</h3>
+		<br>
+		<h2>Your Plan</h2>
+		<h2>$49.99</h2>
+		{% if cancel == False %}
+			{% if trial == True %}
+				<h3>You have free trial for {{days}} days.</h3>
+				<br>
+			{% else %}
+				<h3> Your Plan is active</h3>
+				<br>
+			{% endif %}
+			<div><button type="button" onclick="myFunction()">Cancel Subscription</button></div>
+			<br>
+		{% else %}
+			{% if trial == True %}
+				<h3> You have free trial for {{days}} days.</h3>
+				<br>
+			{% else %}
+				<h2> Your subscription will end after this billing cycle.</h2>
+				<br>
+			{% endif %}
+			<div><button type="button" onclick="myFunction1()">Restart Subscription</button></div>
+			<br>
+		{% endif %}
+	</center>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product</title>
+	<style type="text/css">
+	 .topcorner{
+	   position:absolute;
+	   top:10px;
+	   right:10px;
+	  }
+	</style>
+</head>
+<body>
+	<div>
+		<a href="{% url 'logout' %}" class="topcorner" role="button" aria-pressed="true">logout</a>
+	</div>
+	<div>
+		<center>
+			<h1>WhatsBusy</h1>
+			<br>
+			<h2>Subscription Plan</h2>
+			<br>
+			<h2>$49.99*</h2>
+			<h5>benifits</h5>
+			<h5>Access to exclusive content</h5>
+			<h5>Cancel anytime</h5>
+			<h5>Try 7 days for free*</h5>
+			<h5>exclusive for first time users only*</h5>
+			<br>
+				{% if request.user.is_authenticated %} 
+					<form action="{% url 'checkout' %}" method="POST">
+			          {% csrf_token %}
+			          <script
+			            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			            data-key="pk_test_51HOFVkHA61CYh1apqYjzLzBpmH6dP9Z4KV63XGwwIHySbE5WhA3UzAGtK8YUoN8Ec3sKLtPSF0FBHkqRkikKPXSb007YSRFDSt"
+			            data-amount="4999"
+			            data-name="Whatsbusy services"
+			            data-description="Premium Membership"
+			            data-email="{{ user.email }}"
+			            data-locale="auto">
+			          </script>
+			        </form>
+			    {% else %}
+			    	<h4>Want to buy this plan? <a style="color:orange" href="{% url 'login' %}">login first</a></h4>
+		        {% endif %}
+		</center>
+	</div>
+</body>
+</html>

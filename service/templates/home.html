@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<style type="text/css">
+	 .topcorner{
+	   position:absolute;
+	   top:10px;
+	   right:10px;
+	  }
+	</style>
+</head>
+<body>
+	<center>
+		<div>
+			<h1>WhatsBusy</h1>
+			<div>
+				<br>
+				<h2>Home Page</h2>
+				<br>
+				<h3>Welcome to WhatsBusy Services</h3>
+			</div>
+			<br>
+		  <div>
+		  	<h4><a href="{% url 'service' %}" role="button" aria-pressed="true">Click here to view our services</a></h4>
+		    <a href="{% url 'logout' %}" class="topcorner" role="button" aria-pressed="true">logout</a>
+		  </div>
+		 </div>
+	</center>
+</body>
+</html>
